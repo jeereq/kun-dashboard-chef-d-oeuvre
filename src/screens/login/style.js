@@ -21,17 +21,37 @@ export const InputContainer = styled.div`
 	transform: translatex(10%);
 	border-radius: 2px;
 `;
+export const InputError = styled.p`
+	color: red;
+	font-variant: small-caps;
+	&.padding {
+		padding: 10px;
+	}
+`;
 
 export const Input = styled.input`
-	height: 60px;
-	width: ${(props) => (props.min ? "95%" : "100%")};
+	height: 65px;
+	width: ${(props) => (props.mininm ? "100%" : "100%")};
 	box-shadow: 0 0 15px #f8b232;
 	border: none;
 	padding-left: 10px;
 	transition: 0.5s;
 	&:focus {
 		outline: none;
-		transform: scale(1.1);
+		transform: scale(1.05);
+	}
+`;
+export const ContainerPassword = styled.div`
+	position: relative;
+	width: 90%;
+	.icon {
+		position: absolute;
+		right: 2.5%;
+		top: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		width: auto;
 	}
 `;
 
@@ -52,6 +72,6 @@ export const Btn = styled.button`
 	transition: 0.5s;
 	&:focus {
 		outline: none;
-		transform: scale(1.1);
+		transform: translatex(15%) scale(1.1);
 	}
 `;

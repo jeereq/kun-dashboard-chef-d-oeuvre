@@ -3,12 +3,12 @@ module.exports = {
 		browser: true,
 		es2021: true,
 	},
-	extends: 'eslint:recommended',
+	extends: "eslint:recommended",
 	parserOptions: {
 		ecmaVersion: 13,
 	},
 	rules: {
-		'no-undef': 'warn',
-		'no-unused-vars': 'warn',
+		"no-undef": "warn",
+		"no-unused-vars": "warn",
 	},
 };

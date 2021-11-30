@@ -9,7 +9,7 @@ function App() {
 			<Route path="/signup" children={<Signup />} />
 			<Route path="/home" children={<Home />} />
 			<Route path="/reset-password" children={<ResetPassword />} />
-			<Route path="/" children={<Login name="minganda jeereq" />} />
+			<Route path="/" children={<Login />} />
 		</Switch>
 	);
 }
