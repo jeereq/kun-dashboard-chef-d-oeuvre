@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Redirect, useRouteMatch } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -48,7 +48,6 @@ export default function Login() {
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
-	const { path } = useRouteMatch();
 
 	const onSubmit = (content) => {
 		login({ variables: content });
@@ -64,10 +63,10 @@ export default function Login() {
 
 	useMemo(() => {
 		if (data !== undefined && data["login"] !== null) {
+			const { _id, token } = data.login;
 			setRedirect(true);
-			console.log(data);
-			localStorage.setItem("token", data.login.token);
-			localStorage.setItem("id", data.login._id);
+			localStorage.setItem("token", token);
+			localStorage.setItem("id", _id);
 		}
 	}, [data]);
 

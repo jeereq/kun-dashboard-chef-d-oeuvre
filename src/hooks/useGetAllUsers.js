@@ -3,8 +3,8 @@ import { useQuery, gql } from "@apollo/client";
 import useRedux from "./useRedux";
 
 const GetUser = gql`
-	query user($id: ID) {
-		user(id: $id) {
+	query users {
+		users {
 			_id
 			authorisation
 			active
@@ -18,23 +18,20 @@ const GetUser = gql`
 	}
 `;
 
-export default function useCurrentUser() {
+export default function useGetAllUsers() {
 	const response = useQuery(GetUser, {
 		variables: { id: localStorage.getItem("id") },
 	});
-	const { setUser } = useRedux();
+	const { setUsers } = useRedux();
 
 	useEffect(() => {
-		if (response.data !== undefined && response.data["user"] !== undefined) {
-			setUser(response);
+		if (response.data !== undefined && response.data["users"] !== undefined) {
+			setUsers(response);
+			console.log(response);
 		}
 	}, [response.data]);
 
 	const { loading, error, data } = response;
 
-	return {
-		dataCurrentUser: data,
-		loadingCurrentUser: loading,
-		errorCurrentUser: error,
-	};
+	return { dataAllUsers: data, loadingAllUsers: loading, errorAllUsers: error };
 }

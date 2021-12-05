@@ -1,15 +1,17 @@
 import styled from "styled-components";
-import { COLOR } from "../../helpers/constance";
+import { COLOR, COLORDOREE } from "../../helpers/constance";
 
 export const Container = styled.div`
 	position: fixed;
-	height: 100vh;
+	top: 0;
+	bottom: 0;
 	width: auto;
 	padding: 5px;
 	background: ${COLOR};
+	box-shadow: 0 0 25px #00000021;
 	h1 {
 		color: ${COLOR};
-		background: white;
+		background: ${COLORDOREE};
 		padding: 0px 10px;
 		border-radius: 3.5px;
 		text-align: center;
@@ -38,13 +40,24 @@ export const Container = styled.div`
 			display: flex;
 			align-items: center;
 			justify-content: flex-start;
-			color: white;
+			color: #717171;
 			width: 100%;
 			font-size: 1.05em;
 			margin: 10px 0;
 			padding: 10px 15px;
 			text-decoration: none;
 			transition: 0.5s;
+			&::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				width: 2.5px;
+				background: transparent;
+				transition: 0.5s;
+				transform: translatex(150%);
+			}
 			svg {
 				margin-right: 5px;
 			}
@@ -62,10 +75,12 @@ export const Container = styled.div`
 
 			&.active,
 			&:hover {
-				color: ${COLOR};
-				background: white;
+				color: white;
 				border-radius: 3.5px;
 				font-weight: bold;
+				&::after {
+					background: white;
+				}
 			}
 		}
 	}

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "./style";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import useRedux from "../../hooks/useRedux";
 
 export default function SideBar() {
+	const { user } = useRedux();
+
 	return (
 		<Container>
 			<h1 className="max">k'un</h1>
@@ -19,8 +22,9 @@ export default function SideBar() {
 				</NavLink>
 				<NavLink to="/home/users">
 					<Icon icon="bx:bxs-user" />
-					<span> Users</span>
+					<span> Utilisateurs</span>
 				</NavLink>
+				{user.username}
 			</div>
 		</Container>
 	);

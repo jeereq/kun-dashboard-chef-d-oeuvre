@@ -1,7 +1,8 @@
 const initialeState = {
 	user: {},
-	users: [],
-	restaurants: [],
+	users: {},
+	restaurants: {},
+	total: 0,
 };
 
 const StateProvider = (state = initialeState, { payload, type }) => {
@@ -21,11 +22,17 @@ const StateProvider = (state = initialeState, { payload, type }) => {
 				...state,
 				user: payload,
 			};
+		case ADD_TOTAL:
+			return {
+				...state,
+				total: payload,
+			};
 		default:
 			return state;
 	}
 };
 
+export const ADD_TOTAL = "ADD_TOTAL";
 export const ADD_USER = "ADD_USER";
 export const ADD_USERS = "ADD_USERS";
 export const ADD_RESTAURANTS = "ADD_RESTAURANTS";

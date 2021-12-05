@@ -1,51 +1,72 @@
 import React, { useEffect } from "react";
-import { gql, useQuery } from "@apollo/client";
-import { Container, StatistiqueHeader } from "./style";
+import { Loader } from "rsuite";
+import {
+	Container,
+	StatistiqueHeader,
+	Header,
+	Chart,
+	Main,
+	Stat,
+} from "./style";
 import useRedux from "../../hooks/useRedux";
+import { Icon } from "@iconify/react";
+import CardTopRestaurants from "../../components/cards/cardRestaurants";
 import CardDashboard from "../../components/cards/dashboard";
-import useCurrentUser from "../../hooks/useCurrentUser";
-
-const GetUsers = gql`
-	query users {
-		users {
-			_id
-			authorisation
-			active
-			username
-			email
-			phone_number
-			createdAt
-			updatedAt
-		}
-	}
-`;
+import { COLOR, COLORDOREE } from "../../helpers/constance";
 
 export default function Dashboard() {
-	const { loading, data } = useQuery(GetUsers);
-	const { setUsers } = useRedux();
-	const currentUser = useCurrentUser();
-
+	const { user, users, restaurants, total, setTotal } = useRedux();
 	useEffect(() => {
-		if (data !== undefined) {
-			setUsers(data.users);
-		}
-	}, [data]);
-
-	useEffect(() => {
-		console.log(currentUser);
-	}, [currentUser]);
+		users["data"] && restaurants["data"]
+			? setTotal(users.data.users.length + restaurants.data.restaurants.length)
+			: setTotal(0);
+	}, [user, users, restaurants]);
 
 	return (
 		<Container>
-			Dashboard ,
+			<Header>
+				{user["data"] ? (
+					<>
+						<h2>
+							{user.data.user.username} l'
+							<span>administrateur</span>
+						</h2>
+						<h5>
+							<Icon
+								icon="healthicons:i-schedule-school-date-time-outline"
+								color={COLORDOREE}
+							/>
+							{new Date().toLocaleDateString()}
+						</h5>
+					</>
+				) : (
+					<Loader color={COLORDOREE} />
+				)}
+			</Header>
 			<StatistiqueHeader>
-				{/* {users.map((item, index) => (
-					<CardDashboard key={index}>{index}</CardDashboard>
-				))} */}
-				<CardDashboard>users</CardDashboard>
-				<CardDashboard>restaurants</CardDashboard>
-				<CardDashboard>total</CardDashboard>
+				<CardDashboard
+					name="utilisateurs"
+					icon={<Icon icon="bx:bxs-user" />}
+					number={users["data"] ? users.data.users.length : 0}
+				/>
+				<CardDashboard
+					name="restaurants"
+					icon={<Icon icon="ic:baseline-restaurant-menu" />}
+					number={restaurants["data"] ? restaurants.data.restaurants.length : 0}
+				/>
+				<CardDashboard
+					name="total"
+					icon={<Icon icon="akar-icons:people-group" />}
+					number={total}
+				/>
 			</StatistiqueHeader>
+			<Main>
+				<Chart />
+				<CardTopRestaurants />
+				<Stat />
+				<Stat />
+				<Stat />
+			</Main>
 		</Container>
 	);
 }

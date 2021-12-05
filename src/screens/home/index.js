@@ -5,13 +5,17 @@ import Dashboard from "../dashboard";
 import Users from "../users";
 import Restaurants from "../restaurants";
 import useRedux from "../../hooks/useRedux";
+import useCurrentUser from "../../hooks/useCurrentUser";
+import useGetAllUsers from "../../hooks/useGetAllUsers";
+import useGetAllRestaurants from "../../hooks/useGetAllRestaurants";
 
 export default function Home() {
-	const { users, restaurants } = useRedux();
+	const allUsers = useGetAllUsers();
+	const currentUser = useCurrentUser();
+	const allRestaurants = useGetAllRestaurants();
 
-	useEffect(() => {
-		console.log(users, restaurants);
-	}, [users]);	
+	if (!localStorage.getItem("id") || !localStorage.getItem("token"))
+		return <Redirect to="/" />;
 
 	return (
 		<Layout>
