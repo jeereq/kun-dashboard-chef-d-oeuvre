@@ -4,21 +4,21 @@ import { Notification, toaster } from "rsuite";
 export default function Error({ message, onClick }) {
 	return (
 		<Container>
-			<Message type={{ type: "error", message, onClick }} />
+			<Message type={{ type: "error" }} message={message} onClick={onClick} />
 		</Container>
 	);
 }
 
-const Message = React.forwardRef(({ type, ...rest }, ref) => {
+const Message = React.forwardRef(({ type, onClick, message, ...rest }, ref) => {
 	return (
 		<Notification
 			ref={ref}
 			{...rest}
 			type={type.type}
 			header={type.type}
-			onClick={type.onClick}
+			onClick={onClick}
 		>
-			<p>{type.message.toString()}</p>
+			<p>{message.toString()}</p>
 		</Notification>
 	);
 });

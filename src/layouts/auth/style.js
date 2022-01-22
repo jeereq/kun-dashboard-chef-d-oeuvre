@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR } from "../../helpers/constance";
+import { COLOR, COLORGREY } from "../../helpers/constance";
 
 export const Container = styled.div`
 	display: flex;
@@ -9,13 +9,13 @@ export const Container = styled.div`
 	justify-content: center;
 	height: 100vh;
 	width: 100%;
-	background-image: url(../../assets/images/vague_basse.png);
 	.left {
 		height: 100vh;
-		width: 50%;
+		width: 40%;
 		display: flex;
 		align-items: center;
-		justify-content: flex-end;
+		justify-content: center;
+		background: ${COLOR};
 		@media screen and (max-width: 700px) {
 			width: 70%;
 		}
@@ -27,9 +27,33 @@ export const Container = styled.div`
 		}
 	}
 	.right {
+		position: relative;
 		height: 100vh;
-		width: 50%;
-		background-color: #f8b232;
+		width: 60%;
+		overflow: hidden;
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(transparent, black);
+		}
+		&::before {
+			content: "bonjour, bienvenue";
+			color: white;
+			font-size: 4em;
+			text-transform: small-caps;
+			position: absolute;
+			left: 50px;
+			right: 0;
+			bottom: 150px;
+			z-index: 1;
+		}
+		img {
+			width: 100%;
+		}
 		@media screen and (max-width: 700px) {
 			width: 30%;
 		}
@@ -45,13 +69,13 @@ export const FormContainer = styled.div`
 	width: 60%;
 	height: 90vh;
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	flex-wrap: wrap;
 	.link {
 		width: 100%;
 		padding: 10px;
 		text-align: center;
-		color: black;
+		color: ${COLORGREY};
 		text-decoration: none;
 		transition: 0.5s;
 		&:hover {

@@ -14,15 +14,18 @@ import {
 	H1,
 	ContainerPassword,
 } from "./style";
-import { COLOR } from "../../helpers/constance";
+import { COLOR, COLORDOREE } from "../../helpers/constance";
 import { useLazyQuery, gql } from "@apollo/client";
 import Loader from "../../components/loader";
 import ErrorMessage from "../../components/messages/Error";
 
 const schema = yup
 	.object({
-		email: yup.string().required(),
-		password: yup.string().required(),
+		email: yup
+			.string()
+			.email("le champ doit etre un email valide")
+			.required("l' email est un champ requis"),
+		password: yup.string().required("le mot de passe est un champ requis"),
 	})
 	.required();
 
@@ -77,23 +80,24 @@ export default function Login() {
 	if (redirect) return <Redirect to="/home" />;
 
 	return (
-		<LoginLayout link="/reset-password" message="Mot de passe oublié ?">
-			{loading && <Loader />}
-			{Error && <ErrorMessage message={Error} onClick={onError} />}
+		<LoginLayout link="/reset-password">
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<H1>Bienvenue !</H1>
+				<H1>Login</H1>
 				<InputContainer>
-					<Input type="email" {...register("email")} placeholder="Email" />
-					<InputError className={errors.email ? "padding" : ""}>
-						{errors.email?.message}
-					</InputError>
+					<Input
+						type="email"
+						{...register("email")}
+						placeholder="Email"
+						error={errors.email}
+					/>
+					<InputError error={errors.email}>{errors.email?.message}</InputError>
 					<ContainerPassword>
 						<Input
 							autoComplete="off"
 							type={type}
 							{...register("password")}
 							placeholder="Mot de passe"
-							mininm
+							error={errors.password}
 						/>
 						<div className="icon" onClick={onTypeChange}>
 							<Icon
@@ -103,19 +107,19 @@ export default function Login() {
 							/>
 						</div>
 					</ContainerPassword>
-
-					<InputError className={errors.password ? "padding" : ""}>
+					<InputError error={errors.password}>
 						{errors.password?.message}
 					</InputError>
 				</InputContainer>
 				<Btn
 					type="submit"
-					colorBg={errors.password || errors.email ? "red" : COLOR}
+					colorBg={errors.password || errors.email ? "red" : COLORDOREE}
 				>
 					login
 				</Btn>
-				<Btn onClick={() => setRedirect(true)}>signup</Btn>
 			</Form>
+			{loading && <Loader />}
+			{Error && <ErrorMessage message={Error} onClick={onError} />}
 		</LoginLayout>
 	);
 }

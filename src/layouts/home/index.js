@@ -9,7 +9,7 @@ export default function Layout({ children }) {
 			<SideBar />
 			<main>
 				{children}
-				<Logout />	
+				<Logout />
 			</main>
 		</Container>
 	);
