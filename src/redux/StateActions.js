@@ -3,6 +3,7 @@ import {
 	ADD_USERS,
 	ADD_RESTAURANTS,
 	ADD_TOTAL,
+	ADD_STATISTIQUES
 } from "./StateProvider";
 
 export const SET_USER = (USER) => ({
@@ -23,4 +24,9 @@ export const SET_USERS = (USERS) => ({
 export const SET_RESTAURANTS = (RESTAURANTS) => ({
 	type: ADD_RESTAURANTS,
 	payload: RESTAURANTS,
+});
+
+export const SET_STATISTIQUES = (STATISTIQUES) => ({
+	type: ADD_STATISTIQUES,
+	payload: STATISTIQUES,
 });

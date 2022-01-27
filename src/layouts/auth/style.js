@@ -15,7 +15,6 @@ export const Container = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: ${COLOR};
 		@media screen and (max-width: 700px) {
 			width: 70%;
 		}
@@ -53,6 +52,7 @@ export const Container = styled.div`
 		}
 		img {
 			width: 100%;
+			objet-fit: cover;
 		}
 		@media screen and (max-width: 700px) {
 			width: 30%;

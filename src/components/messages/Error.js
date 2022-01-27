@@ -4,7 +4,9 @@ import { Notification, toaster } from "rsuite";
 export default function Error({ message, onClick }) {
 	return (
 		<Container>
-			<Message type={{ type: "error" }} message={message} onClick={onClick} />
+			<div>
+				<Message type={{ type: "error" }} message={message} onClick={onClick} />
+			</div>
 		</Container>
 	);
 }

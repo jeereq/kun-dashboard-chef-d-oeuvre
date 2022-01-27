@@ -13,9 +13,64 @@ import { Icon } from "@iconify/react";
 import CardTopRestaurants from "../../components/cards/cardRestaurants";
 import CardDashboard from "../../components/cards/dashboard";
 import { COLOR, COLORDOREE } from "../../helpers/constance";
+import { useQuery, gql } from "@apollo/client";
 
+const GetUser = gql`
+	query statistique {
+		statistique {
+			total
+			user {
+				top {
+					_id
+					username
+					email
+					phone_number
+					genre
+				}
+				length
+				femme_length
+				homme_length
+				homme {
+					_id
+				}
+				femme {
+					_id
+				}
+			}
+			restaurant {
+				length
+				top {
+					_id
+				}
+			}
+			meal {
+				length
+				top {
+					_id
+				}
+			}
+		}
+	}
+`;
 export default function Dashboard() {
-	const { user, users, restaurants, total, setTotal } = useRedux();
+	const {
+		user,
+		users,
+		restaurants,
+		total,
+		setTotal,
+		statistique,
+		setStatistique,
+	} = useRedux();
+
+	useQuery(GetUser, {
+		onCompleted: ({ statistique }) => {
+			setStatistique(statistique);
+		},
+		onError: (error) => {
+			console.log(error);
+		},
+	});
 	useEffect(() => {
 		users["data"] && restaurants["data"]
 			? setTotal(users.data.users.length + restaurants.data.restaurants.length)
@@ -34,7 +89,7 @@ export default function Dashboard() {
 						<h5>
 							<Icon
 								icon="healthicons:i-schedule-school-date-time-outline"
-								color={COLORDOREE}
+								color={COLOR}
 							/>
 							{new Date().toLocaleDateString()}
 						</h5>
@@ -47,15 +102,20 @@ export default function Dashboard() {
 				<CardDashboard
 					name="utilisateurs"
 					icon={<Icon icon="bx:bxs-user" />}
-					number={users["data"] ? users.data.users.length : 0}
+					number={statistique["user"] ? statistique.user.length : 0}
 				/>
 				<CardDashboard
 					name="restaurants"
 					icon={<Icon icon="ic:baseline-restaurant-menu" />}
-					number={restaurants["data"] ? restaurants.data.restaurants.length : 0}
+					number={statistique["restaurant"] ? statistique.restaurant.length : 0}
 				/>
 				<CardDashboard
-					name="total"
+					name="meals"
+					icon={<Icon icon="akar-icons:people-group" />}
+					number={statistique["meal"] ? statistique.meal.length : 0}
+				/>
+				<CardDashboard
+					name="comments"
 					icon={<Icon icon="akar-icons:people-group" />}
 					number={total}
 				/>

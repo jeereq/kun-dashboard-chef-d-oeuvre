@@ -10,9 +10,9 @@ import useGetAllUsers from "../../hooks/useGetAllUsers";
 import useGetAllRestaurants from "../../hooks/useGetAllRestaurants";
 
 export default function Home() {
-	const allUsers = useGetAllUsers();
-	const currentUser = useCurrentUser();
-	const allRestaurants = useGetAllRestaurants();
+	useGetAllUsers();
+	useCurrentUser();
+	useGetAllRestaurants();
 
 	if (!localStorage.getItem("id") || !localStorage.getItem("token"))
 		return <Redirect to="/" />;

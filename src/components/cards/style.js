@@ -9,11 +9,11 @@ export const TopRestaurants = styled.div`
 	position: relative;
 	height: 50vh;
 	width: 30%;
-	background: ${COLOR};
 	border-radius: 20px;
-	box-shadow: 0 0 25px #00000021;
 	margin-bottom: 15px;
+	background: white;
 	padding: 15px;
+	overflow:hidden;
 	.more {
 		position: absolute;
 		bottom: 0;
@@ -23,18 +23,13 @@ export const TopRestaurants = styled.div`
 		color: white;
 		display: flex;
 		justify-content: center;
+		background: ${COLOR};
 		&:hover {
 			cursor: pointer;
 		}
 	}
 `;
-export const ProgressBar = styled.div`
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	transform: translatey(-75%);
-`;
+
 export const CardMiniRestaurantStyle = styled.div`
 	position: relative;
 	height: 50px;
@@ -45,54 +40,55 @@ export const CardMiniRestaurantStyle = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-arround;
+	border-radius: 12.5px;
+	cursor: pointer;
+	&:hover {
+		background: ${COLORGREY};
+	}
 
 	.avatar {
-		height: 40px;
-		width: 40px;
 		border-radius: 50%;
-		color: white;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding: 0 5px;
+	}
+	.name {
+		padding: 0 5px;
 	}
 `;
 
 export const CardDashboard = styled.div`
-	position: relative;
-	height: 120px;
-	width: 30%;
+	height: 250px;
+	width: 22.5%;
+	color: black;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: flex-end;
 	border-radius: 20px;
-	background: ${COLOR};
-	padding-top: 5px;
-	padding-left: 15px;
-	margin-top: 20px;
-	box-shadow: 0 0 25px #00000021;
+	padding-left: 30px;
+	padding-bottom: 70px;
+	background: white;
+	box-shadow: 0 0 30px #00000015;
+	font-weight: 100;
+	cursor: pointer;
+	&:hover {
+		background: ${COLOR};
+		color: white;
+	}
 	h3 {
-		display: flex;
-		align-items: center;
+		width: 100%;
 		svg {
 			margin-right: 5px;
 		}
 	}
 	h4 {
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		width: auto;
-		color: ${COLORDOREE};
-		background: ${COLORGREY};
-		padding: 5px 20px;
-		padding-bottom: 10px;
-		border-radius: 60px 0px;
-		margin: 5px;
+		padding-top: 10px;
+		width: 100%;
 		font-size: 3em;
-		text-align: center;
-		span {
-			background: ${COLORDOREE};
-			color: white;
-			padding: 2.5px 10px;
-			border-radius: 50%;
-		}
+		font-weight: bold;
+		text-align: left;
 	}
 	@media screen and (max-width: 600px) {
 		padding-left: 0px;

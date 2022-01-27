@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { COLORGREY } from "../../helpers/constance";
 
 export const Container = styled.div`
 	height: auto;
@@ -8,8 +9,8 @@ export const Container = styled.div`
 	justify-content: "center";
 	main {
 		width: 100%;
-		margin-left: 120px;
-		background: #1e1e1e;
+		margin-left: 150px;
+		background: ${COLORGREY};
 		@media screen and (max-width: 600px) {
 			margin-left: 65px;
 		}

@@ -5,13 +5,12 @@ export const Container = styled.div`
 	position: fixed;
 	top: 0;
 	bottom: 0;
-	width: auto;
+	width: 150px;
 	padding: 5px;
-	background: ${COLOR};
 	box-shadow: 0 0 25px #00000021;
 	h1 {
-		color: ${COLOR};
-		background: ${COLORDOREE};
+		color: white;
+		background: ${COLOR};
 		padding: 0px 10px;
 		border-radius: 3.5px;
 		text-align: center;
@@ -75,7 +74,7 @@ export const Container = styled.div`
 
 			&.active,
 			&:hover {
-				color: white;
+				color: ${COLOR};
 				border-radius: 3.5px;
 				font-weight: bold;
 				&::after {

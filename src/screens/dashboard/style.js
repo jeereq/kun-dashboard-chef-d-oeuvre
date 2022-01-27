@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, COLORDOREE } from "../../helpers/constance";
+import { COLOR } from "../../helpers/constance";
 
 export const Container = styled.div`
 	height: auto;
@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const StatistiqueHeader = styled.div`
 	padding: 20px;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 `;
 export const Header = styled.div`
 	padding: 0 10px;
@@ -22,7 +22,7 @@ export const Header = styled.div`
 
 	span {
 		padding-left: 10px;
-		color: ${COLORDOREE};
+		color: ${COLOR};
 	}
 `;
 export const Main = styled.div`
@@ -35,7 +35,7 @@ export const Main = styled.div`
 export const Chart = styled.div`
 	height: 50vh;
 	width: 65%;
-	background: ${COLOR};
+	background: white;
 	border-radius: 20px;
 	box-shadow: 0 0 25px #00000021;
 	margin-bottom: 15px;

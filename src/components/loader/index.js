@@ -5,7 +5,7 @@ import { Container } from "./style";
 export default function LoaderCircle() {
 	return (
 		<Container>
-			<Loader center content="loading" color="white" />
+			<Loader center content="loading" color="red" />
 		</Container>
 	);
 }

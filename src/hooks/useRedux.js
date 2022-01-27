@@ -5,12 +5,14 @@ import {
 	SelectUsers,
 	SelectUser,
 	SelectTotal,
+	SelectStatistique,
 } from "../redux/StateSelectors";
 import {
 	SET_RESTAURANTS,
 	SET_USERS,
 	SET_USER,
 	SET_TOTAL,
+	SET_STATISTIQUES,
 } from "../redux/StateActions";
 export default function useRedux() {
 	const dispatch = useDispatch();
@@ -19,14 +21,17 @@ export default function useRedux() {
 	const user = useSelector(({ admin }) => SelectUser(admin));
 	const users = useSelector(({ admin }) => SelectUsers(admin));
 	const restaurants = useSelector(({ admin }) => SelectRestaurants(admin));
+	const statistique = useSelector(({ admin }) => SelectStatistique(admin));
 
 	const setTotal = (total) => dispatch(SET_TOTAL(total));
 	const setUser = (user) => dispatch(SET_USER(user));
 	const setUsers = (users) => dispatch(SET_USERS(users));
 	const setRestaurants = (restaurants) =>
 		dispatch(SET_RESTAURANTS(restaurants));
-
+	const setStatistique = (statistique) =>
+		dispatch(SET_STATISTIQUES(statistique));
 	return {
+		statistique,
 		total,
 		user,
 		users,
@@ -35,5 +40,6 @@ export default function useRedux() {
 		setUsers,
 		setUser,
 		setTotal,
+		setStatistique,
 	};
 }

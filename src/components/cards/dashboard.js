@@ -18,17 +18,11 @@ export default function Dashboard({ children, name, icon, number }) {
 
 	return (
 		<CardDashboard>
-			<h3>
-				{icon}
-				<span> {name}</span>
-			</h3>
+			{icon}
+			<h3>{name}</h3>
 			<h4>
-				<span>{number !== undefined ? number : 0}</span>{" "}
-				<Icon icon="bx:bx-stats" />
+				<span>{number !== undefined ? number : 0}</span>
 			</h4>
-			<ProgressBar>
-				<Progress.Line percent={pourcentage} strokeColor={COLORDOREE} />
-			</ProgressBar>
 		</CardDashboard>
 	);
 }

@@ -5,13 +5,13 @@ import MiniRestaurant from "./cardMiniRestaurant";
 import { NavLink } from "react-router-dom";
 
 export default function CardTopRestaurants() {
-	const { restaurants } = useRedux();
+	const { restaurants, statistique } = useRedux();
 	return (
 		<TopRestaurants>
 			<h4>Meilleurs restaurants</h4>
-			{restaurants["data"] ? (
+			{statistique["restaurant"] ? (
 				<div>
-					{restaurants.data.restaurants.map((item, index) => (
+					{statistique.user.top.map((item, index) => (
 						<MiniRestaurant key={index} numero={index + 1} item={item} />
 					))}
 				</div>
