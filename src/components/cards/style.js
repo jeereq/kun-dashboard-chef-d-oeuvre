@@ -12,18 +12,18 @@ export const TopRestaurants = styled.div`
 	border-radius: 20px;
 	margin-bottom: 15px;
 	background: white;
-	padding: 15px;
-	overflow:hidden;
+	padding:10px  15px;
+	overflow: hidden;
 	.more {
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		padding: 15px;
+		padding:10px  15px;
 		color: white;
 		display: flex;
 		justify-content: center;
-		background: ${COLOR};
+		color: ${COLOR};
 		&:hover {
 			cursor: pointer;
 		}
@@ -35,7 +35,7 @@ export const CardMiniRestaurantStyle = styled.div`
 	height: 50px;
 	width: 100%;
 	margin-bottom: 5px;
-	padding: 5px;
+	padding: 2.5px 5px;
 	padding-left: 10px;
 	display: flex;
 	align-items: center;
@@ -61,14 +61,14 @@ export const CardMiniRestaurantStyle = styled.div`
 export const CardDashboard = styled.div`
 	height: 250px;
 	width: 22.5%;
-	color: black;
+	color: #707070;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
 	justify-content: flex-end;
 	border-radius: 20px;
 	padding-left: 30px;
-	padding-bottom: 70px;
+	padding-bottom: 50px;
 	background: white;
 	box-shadow: 0 0 30px #00000015;
 	font-weight: 100;
@@ -77,11 +77,12 @@ export const CardDashboard = styled.div`
 		background: ${COLOR};
 		color: white;
 	}
+	svg {
+		margin-right: 5px;
+		font-size: 3em;
+	}
 	h3 {
 		width: 100%;
-		svg {
-			margin-right: 5px;
-		}
 	}
 	h4 {
 		padding-top: 10px;

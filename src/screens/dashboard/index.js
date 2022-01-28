@@ -41,6 +41,8 @@ const GetUser = gql`
 				length
 				top {
 					_id
+					name
+					visites
 				}
 			}
 			meal {
@@ -65,6 +67,7 @@ export default function Dashboard() {
 
 	useQuery(GetUser, {
 		onCompleted: ({ statistique }) => {
+			console.log(statistique);
 			setStatistique(statistique);
 		},
 		onError: (error) => {
